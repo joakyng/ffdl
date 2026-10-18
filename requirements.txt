@@ -1,0 +1,3 @@
+playwright
+requests
+pyinstaller  # only needed for build.py
