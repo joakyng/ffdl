@@ -195,7 +195,11 @@ def open_browser(p):
     try:
         ctx = p.chromium.launch_persistent_context(
             PROFILE_DIR, channel="chrome", headless=False, accept_downloads=True,
-            args=["--start-minimized"])
+            no_viewport=True,  # keep the real window size instead of a fixed 1280x720
+            # Don't announce automation (navigator.webdriver, "controlled by automated
+            # software" bar): Cloudflare checks for it
+            ignore_default_args=["--enable-automation"],
+            args=["--start-minimized", "--disable-blink-features=AutomationControlled"])
     except Exception as e:
         if "is not found" in str(e):
             raise RuntimeError("Google Chrome is not installed. Get it from "

@@ -102,6 +102,8 @@ All done.
 - If the Cloudflare check takes longer than 30 seconds, the Chrome window pops up so you can solve a captcha.
   It minimizes again when you're through.
 - Headless (fully hidden) Chrome is not used because Cloudflare does not let it through.
+- Chrome is started without the automation flags (`--enable-automation`, `navigator.webdriver`)
+  that Cloudflare looks for, so it looks like a normal Chrome window.
 - Chrome uses its own profile, so the Cloudflare check is usually passed automatically after the first time:
 
   | OS | Profile folder |
